@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CovidServiceService } from '../covid-service.service';
+
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  info: any = null;
+  constructor(private covidService: CovidServiceService) {
+    this.covidService.getAll().subscribe((data) => {
+      this.info = data;
+    });
+  }
 
 }

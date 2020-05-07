@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CovidServiceService } from '../covid-service.service';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  countries: any = null;
+  searchCountry: any;
 
+  constructor(private covidService: CovidServiceService) {
+
+    this.covidService.getCountries().subscribe((data) => {
+      this.countries = data;
+    });
+
+  }
 }
